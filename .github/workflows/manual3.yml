@@ -26,7 +26,7 @@ jobs:
       if: ${{ (github.event_name != 'workflow_dispatch' && success()) || (github.event_name == 'workflow_dispatch' && github.event.inputs.trigger_next && success()) }}
       uses: peter-evans/repository-dispatch@v1
       with:
-        token: ${{ secrets.REPO_GHA_PAT }}
+        token: ${{ secrets.repo_gha_pat_new }}
         repository: ipluaws/auth
         event-type: manual4
-        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "branch": "${{ github.event.client_payload.branch }}" }'
